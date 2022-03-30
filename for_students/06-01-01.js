@@ -1,4 +1,13 @@
+/**
+ * 06-01-01.js - a simple JavaScript file that gets loaded with
+ * page 1 of Workbook 7 (CS559).
+ *
+ * written by Michael Gleicher, January 2019
+ * modified January 2020
+ */
+
 // @ts-check
+/* jshint -W069, esversion:6 */
 
 import * as T from "../libs/CS559-Three/build/three.module.js";
 
@@ -42,7 +51,7 @@ let lastTimestamp; // undefined to start
 
 function animate(timestamp) {
   // Convert time change from milliseconds to seconds
-  let timeDelta = 0.002 * (lastTimestamp ? timestamp - lastTimestamp : 0);
+  let timeDelta = 0.001 * (lastTimestamp ? timestamp - lastTimestamp : 0);
   lastTimestamp = timestamp;
 
   cube.rotation.x += 0.5 * timeDelta;

@@ -1,4 +1,4 @@
-# CS559 Workbook 6, Spring 2021
+# CS559 Workbook , Spring 2021
 
 This set of web pages forms a "workbook" assignment for 
 CS559, Computer Graphics at the University of Wisconsin for Spring 2021.

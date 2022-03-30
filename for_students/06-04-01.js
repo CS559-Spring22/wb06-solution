@@ -1,8 +1,15 @@
+/**
+ * 06-04-01.js - a simple JavaScript file that gets loaded with
+ * page 4 of Workbook 7 (CS559).
+ *
+ * written by Michael Gleicher, January 2019
+ * modified January 2020
+ */
+
 // @ts-check
 /* jshint -W069, esversion:6 */
 
 import * as T from "../libs/CS559-Three/build/three.module.js";
-import { OrbitControls } from "../libs/CS559-Three/examples/jsm/controls/OrbitControls.js";
 
 let renderer = new T.WebGLRenderer();
 renderer.setSize(400, 400);
@@ -20,13 +27,6 @@ let point = new T.PointLight("white", 1, 0, 0);
 point.position.set(20, 10, 15);
 scene.add(point);
 
-// put an axis mark at the origin
-let axesMarker = new T.AxesHelper();
-scene.add(axesMarker);
-
-// add OrbitControls
-let controls = new OrbitControls(camera, renderer.domElement);
-
 // make a ground plane
 let groundBox = new T.BoxGeometry(5, 0.1, 5);
 let groundMesh = new T.Mesh(
@@ -40,20 +40,14 @@ scene.add(groundMesh);
 let box = new T.BoxGeometry(1, 1, 1);
 
 let cube1 = new T.Mesh(box, new T.MeshStandardMaterial({ color: "purple" }));
-cube1.rotateY(Math.PI/4);
+cube1.rotateY(45);
 cube1.position.set(2, 0.5, 0);
 scene.add(cube1);
 
 let cube2 = new T.Mesh(box, new T.MeshStandardMaterial({ color: "red" }));
-cube2.rotateY(Math.PI/4);
+cube2.rotateY(45);
 cube2.translateX(2);
 cube2.translateY(0.5);
 scene.add(cube2);
 
-function animate(timestamp) {
-  // now we just need to draw the scene with the camera
-  renderer.render(scene, camera);
-  // have an animation loop
-  window.requestAnimationFrame(animate);
-}
-window.requestAnimationFrame(animate);
+renderer.render(scene, camera);

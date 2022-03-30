@@ -1,7 +1,8 @@
-// Helper functions
+// Helper functions for 06-09-01
 // Students do not need to change these - but they may need to read the 
 // code to understand where things are
 // @ts-check
+/* jshint -W069, esversion:6 */
 import * as T from "../libs/CS559-Three/build/three.module.js";
 
 

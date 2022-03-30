@@ -19,7 +19,9 @@
         
         
         
-		<div class="content post__content clearfix"><h2 id="objects">Objects</h2>
+		<div class="content post__content clearfix"><div class="dimbox">
+                    <h3>CS559 Spring 2022 Sample Solution</h3>
+                </div><h2 id="objects">Objects</h2>
 <p>Objects in THREE are subclasses of <a href="https://cs559.github.io/ThreeDocs_r137/docs/index.html#api/en/core/Object3D" target="_blank">Object3D</a>. This same base class is used for all the things we put into the world: lights, camera, the actual &ldquo;things&rdquo; we see.</p>
 <p>The nice part of this is that all objects get the same common functionality.</p>
 <p>The main kind of &ldquo;thing&rdquo; we&rsquo;ll put in the world is a <a href="https://cs559.github.io/ThreeDocs_r137/docs/index.html#api/en/objects/Mesh" target="_blank">Mesh</a>. A Mesh basically is a collection of triangles (in the form of a <code>Geometry</code>) combined with a <code>Material</code> (that tells THREE how those triangles should look) and other information required to place them in the scene, such as transformations and hierarchy information.</p>
@@ -85,6 +87,32 @@
 </div>
 <p>Notice that this code creates a loader, and then asks the loader to load the file <code>./objects/07-astronaut.obj</code>. In this call it passes another (anonymous) function that will be called when loading is complete. This function is passed the loaded object. Note how the function positions the object (setting its position), scales it, and places it into the scene. We didn&rsquo;t have to rotate the object since it was already oriented the right way. Also, notice that we have to call <code>render</code> to draw the object <strong>after</strong> the object is loaded. If <code>render</code> is being called continuously (for example, in an animation loop), that can take care of making sure drawing happens after the object is loaded.</p>
 <p>One other tricky thing: notice that the <code>astronaut</code> variable is a local variable. If you want to access the astronaut after it&rsquo;s loaded (for example, to animate it), you need to have some way to access it from elsewhere in your program. For example, you might want to store it in a global variable. Be careful: remember that your code continues to run while the object is getting loaded.</p>
+<!-- <div class="workbook-todo">
+    <strong>TODO:</strong><div> better explain the code and async programming</div>
+</div>
+ -->
+
+
+<details class="myexpand" >
+    <summary class="myexpand-head">Hint on Async Loading from Piazza 2022</summary>
+    <div class="markdown-inner myexpand-content">
+      <p>Loading objects in THREE can be tricky. You can see some of the complexity in Workbook 6 page 4, where we load the astronaut. The workbook text explains some of it, but if you actually look into the file (06-04-02.js) you will see some more interesting things.</p>
+<p>The first complexity is that load is asynchronous: it doesn&rsquo;t happen instantly. In the workbook text, we set a callback for when the object is loaded and ready to be used. If you look into the code, you will see two more &ldquo;modern&rdquo; ways to do this.</p>
+<p>The workbook doesn&rsquo;t explain these more modern ways to do asynchronous programming, and we haven&rsquo;t gotten to them in lectures (yet).  We discussed them in last year&rsquo;s Lecture 14: <a href="https://pages.graphics.cs.wisc.edu/559-sp21/pages/lecture-materials/">https://pages.graphics.cs.wisc.edu/559-sp21/pages/lecture-materials/</a> (but we didn&rsquo;t in this year&rsquo;s lecture 14)</p>
+<p>But, there are two other things to be aware of (spoiler alert, discovering these on your own is good practice learning to understand a program / API)</p>
+<ol>
+<li>
+<p>Sometimes THREE requires you to tell it when you change an object. THREE aggressively avoids re-computing things - so you need to tell it when something changes so it knows to recompute. Matrices and materials are two examples.</p>
+</li>
+<li>
+<p>The loaders don&rsquo;t always create the object types you think they will. Inspect what object you get (for example, look at the type of <code>astronaut</code> after it is loaded (lines 37 and 48). Use the debugger to place a break point (good practice!). You can do this for <code>astro</code> on line 60 as well.</p>
+</li>
+</ol>
+<p>In both cases, THREE is doing something smart. For 1, it is trying to be efficient. For 2, it allows loading in files that contain multiple meshes.</p>
+
+    </div>
+</details>
+
 <h2 id="box-3-exercise-1-stacking-boxes">Box 3: Exercise 1, Stacking Boxes</h2>
 <p>In <a href="../../for_students/06-04-03.js" class="for_students">06-04-03.js</a> (<a href="../../for_students/06-04-03.html" class="for_students">06-04-03.html</a>), there is a scene that has 5 boxes. Change the positions of the boxes so they are a stack (with the smaller boxes on top of the bigger boxes). Pay attention to both the initial sizes of the boxes and their scaling. The result should be a stack of 5 boxes on top of the ground (each box on top of the next larger box).</p>
 <iframe
@@ -123,7 +151,7 @@
 <h2 class="Side_Title">Workbook 6: 3D and Three</h2>
 <p class="Side__Note">Pages:</p>
 <ul class="Side__List">
-    <li class="Side__Item Side__Unselected"><a href="../../">Index (CS559 Workbook 7 - 3D and THREE)</a></li>
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (CS559 Workbook 6 - 3D and THREE)</a></li>
         <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: The THREE.js library </a></li>
         <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Elements of 3D Graphics Programming </a></li>
         <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Making a Scene </a></li>

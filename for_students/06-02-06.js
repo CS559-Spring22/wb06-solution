@@ -1,6 +1,7 @@
 // @ts-check
 
 import * as T from "../libs/CS559-Three/build/three.module.js";
+import { OrbitControls } from "../libs/CS559-Three/examples/jsm/controls/OrbitControls.js";
 
 // spin!
 
@@ -46,6 +47,9 @@ scene.add(ambientLight);
 let pointLight = new T.PointLight(0xffffff, 1);
 pointLight.position.set(0, 10, 5);
 scene.add(pointLight);
+
+// since we're animating, add OrbitControls
+let controls = new OrbitControls(camera, renderer.domElement);
 
 let lastTimestamp; // undefined to start
 
